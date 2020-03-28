@@ -2,10 +2,12 @@
 2. 打开路径HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings
 3. 
    - DWORD文件：
-     * DeferFeatureUpdatesPeriodInDays 是关闭功能更新的文件，修改十进制数据
+     * DeferFeatureUpdatesPeriodInDays 是关闭功能更新的文件，默认为365，不需要更改
      * DeferQualityUpdatesPeriodInDays 是关闭质量更新的文件，默认为 30，不需要更改
+     * 这两个文件属于使用系统设置里的暂停更新功能时的默认最长时间，可以不用修改
    - SZ（字符串值）文件：
-     在 Windows Update 内启用暂停更新（最多 35 天）时会生成的文件，也可以自己进行创建/修改
+     在设置的 Windows Update 内启用暂停更新（最多 35 天）时会生成的文件，也可以自己进行创建/修改
+     ==建议先在设置里暂停更新，注册表内就会直接有以下文件，不用自己创建，降低bug出现的可能==
      * PauseFeatureUpdatesEndTime 是暂停功能更新检查的截止日期，直接修改时间数据即可
      * PauseFeatureUpdatesStartTime 是暂停功能更新检查的开始日期，直接修改时间数据即可
      * PauseQualityUpdatesEndTime 是暂停质量更新检查的截止日期，直接修改时间数据即可
@@ -13,7 +15,7 @@
      * PauseUpdatesExpiryTime 是暂停更新的截止期限，直接修改时间数据即可
      * PendingRebootStartTime 是暂停更新的开始期限，直接修改时间数据即可
 4. 注：
-   - 使用以上方法需要系统版本能开启注册表（Windows 10 Home 不支持）
+   - 使用以上方法需要系统版本能开启注册表
    - 质量更新是补丁，补丁虽然有可能有 bug，但出于安全考虑建议不要禁止更新的时间设置的过长
    - 功能更新一半是大版本升级，建议新的大版本发布推送几个月后升级，同时由于一个大版本的维护期为 1 年半（18 个月），因此也不建议设置禁止更新的时间过长
    - DWORD 文件可以自己新建，出于安全考虑，不建议修改/新建关于质量更新的 DWORD（理由见上）
